@@ -22,4 +22,8 @@ extension String {
     var toArray: [String] {
         map { String($0) }
     }
+
+    var toCharterArray: [Character] {
+        map { $0 }
+    }
 }

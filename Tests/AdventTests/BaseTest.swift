@@ -16,6 +16,7 @@ enum TestValue: ExpressibleByIntegerLiteral {
 
 extension IBaseTest {
     func check(
+        dataTest: String? = nil,
         testValue: TestValue,
         _ block: () -> Int,
         file: StaticString = #file,
@@ -26,7 +27,7 @@ extension IBaseTest {
             XCTAssert(false, "use real value from task", file: file, line: line)
             return
         }
-        DataLoader.test(data: dataTest) {
+        DataLoader.test(data: dataTest ?? self.dataTest) {
             XCTAssertEqual(block(), value, file: file, line: line)
         }
         print("[T] \(function): ", block())
