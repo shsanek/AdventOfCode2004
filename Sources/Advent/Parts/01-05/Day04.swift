@@ -78,6 +78,5 @@ func day04part2() -> Int {
             }
         }
     }
-
     return result
 }
