@@ -35,3 +35,10 @@ extension Array {
         (index >= 0 && index < count) ? self[index] : nil
     }
 }
+
+extension Array where Element: RandomAccessCollection, Element.Index == Int {
+    subscript(y: Int, x: Int) -> Element.Element? {
+        guard indices.contains(y), self[y].indices.contains(x) else { return nil }
+        return self[y][x]
+    }
+}
