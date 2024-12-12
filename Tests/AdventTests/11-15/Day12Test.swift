@@ -3,13 +3,23 @@ import XCTest
 
 final class Day12Test: XCTestCase, IBaseTest {
     let dataTest = """
+    RRRRIICCFF
+    RRRRIICCCF
+    VVRRRCCFFF
+    VVRCCCJFFF
+    VVVVCJJCFE
+    VVIVCCJJEE
+    VVIIICJJEE
+    MIIIIIJJEE
+    MIIISIJEEE
+    MMMISSJEEE
     """
 
     func testPart1() throws {
-        check(testValue: .unowned, day12part1)
+        check(testValue: 1930, day12part1)
     }
 
     func testPart2() throws {
-        check(testValue: .unowned, day12part2)
+        check(testValue: 1206, day12part2)
     }
 }
