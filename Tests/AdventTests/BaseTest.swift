@@ -17,6 +17,7 @@ enum TestValue: ExpressibleByIntegerLiteral {
 extension IBaseTest {
     func check(
         dataTest: String? = nil,
+        checkAllDate: Int? = nil,
         testValue: TestValue,
         _ block: () -> Int,
         file: StaticString = #file,
@@ -30,6 +31,10 @@ extension IBaseTest {
         DataLoader.test(data: dataTest ?? self.dataTest) {
             XCTAssertEqual(block(), value, file: file, line: line)
         }
-        print("[T] \(function): ", block())
+        let result = block()
+        if let checkAllDate {
+            XCTAssertEqual(block(), checkAllDate, file: file, line: line)
+        }
+        print("[T] \(function): ", result)
     }
 }
