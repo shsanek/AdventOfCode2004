@@ -1,9 +1,5 @@
 import Foundation
 
-struct Point: Hashable {
-    let x, y: Int
-}
-
 func day12part1() -> Int {
     var input = DataLoader.load().split(separator: "\n").map({ String($0).removeSpace }).filter({ !$0.isEmpty }).map({ $0.toArray })
     let width = input[0].count
