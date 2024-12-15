@@ -42,3 +42,25 @@ extension Array where Element: RandomAccessCollection, Element.Index == Int {
         return self[y][x]
     }
 }
+
+extension Array where Element: RandomAccessCollection, Element.Index == Int {
+    subscript(point: Point) -> Element.Element? {
+        let y = point.y
+        let x = point.x
+        guard indices.contains(y), self[y].indices.contains(x) else { return nil }
+        return self[y][x]
+    }
+
+    func forMap(_ block: (Point, Element.Element) -> Void) {
+        let height = self.count
+        let width = self[0].count
+        for y in 0..<height {
+            assert(width == self[y].count)
+            for x in 0..<width {
+                block(.init(x: x, y: y), self[y][x])
+            }
+        }
+    }
+}
+
+

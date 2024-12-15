@@ -16,6 +16,16 @@ extension String {
             .replacingOccurrences(of: "\t", with: "")
             .replacingOccurrences(of: "\n", with: "")
     }
+
+    func split(_ separator: String, removeSpace: Bool = true) -> [String] {
+        if removeSpace {
+            split(separator: separator).map { String($0) }.filter {
+                !$0.removeSpace.isEmpty
+            }
+        } else {
+            split(separator: separator).map { String($0) }
+        }
+    }
 }
 
 extension String {

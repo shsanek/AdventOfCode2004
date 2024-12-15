@@ -14,5 +14,9 @@ struct Point: Hashable {
     static func ==(a: Point, b: Point) -> Bool {
         return a.x == b.x && a.y == b.y
     }
+
+    func move(x: Int = 0, y: Int = 0) -> Point {
+        .init(x: self.x + x, y: self.y + y)
+    }
 }
 
