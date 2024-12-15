@@ -10,6 +10,10 @@ final class DataLoader {
         testData = nil
     }
 
+    static var isRealData: Bool {
+        testData == nil
+    }
+
     static func load(useCache: Bool = true, file: String = #file) -> String {
         if let testData {
             return testData

@@ -1,7 +1,7 @@
 import Foundation
 
 struct Point: Hashable {
-    let x, y: Int
+    var x, y: Int
 
     static func +(a: Point, b: Point) -> Point {
         .init(x: a.x + b.x, y: a.y + b.y)
