@@ -3,13 +3,28 @@ import XCTest
 
 final class Day16Test: XCTestCase, IBaseTest {
     let dataTest = """
+    ###############
+    #.......#....E#
+    #.#.###.#.###.#
+    #.....#.#...#.#
+    #.###.#####.#.#
+    #.#.#.......#.#
+    #.#.#####.###.#
+    #...........#.#
+    ###.#.#####.#.#
+    #...#.....#.#.#
+    #.#.#.###.#.#.#
+    #.....#...#.#.#
+    #.###.#.#.#.#.#
+    #S..#.....#...#
+    ###############
     """
 
     func testPart1() throws {
-        check(testValue: .unowned, day16part1)
+        check(testValue: 7036, day16part1)
     }
 
     func testPart2() throws {
-        check(testValue: .unowned, day16part2)
+        check(testValue: 45, day16part2)
     }
 }
