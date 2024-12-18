@@ -5,12 +5,17 @@ protocol IBaseTest {
     var dataTest: String { get }
 }
 
-enum TestValue: ExpressibleByIntegerLiteral {
+enum TestValue: ExpressibleByIntegerLiteral, ExpressibleByStringLiteral {
     case unowned
-    case number(value: Int)
+    case data(value: String)
 
     init(integerLiteral value: IntegerLiteralType) {
-        self = .number(value: value)
+        self = .data(value: "\(value)")
+    }
+
+
+    init(stringLiteral value: StringLiteralType) {
+        self = .data(value: value)
     }
 }
 
@@ -24,12 +29,37 @@ extension IBaseTest {
         line: UInt = #line,
         function: StaticString = #function
     ) {
-        guard case .number(let value) = testValue else {
+        guard case .data(let value) = testValue else {
             XCTAssert(false, "use real value from task", file: file, line: line)
             return
         }
         DataLoader.test(data: dataTest ?? self.dataTest) {
-            XCTAssertEqual(block(), value, file: file, line: line)
+            XCTAssertEqual("\(block())", value, file: file, line: line)
+        }
+        let result = block()
+        if let checkAllDate {
+            XCTAssertEqual(block(), checkAllDate, file: file, line: line)
+        }
+        print("[T] \(function): ", result)
+    }
+}
+
+extension IBaseTest {
+    func check(
+        dataTest: String? = nil,
+        checkAllDate: String? = nil,
+        testValue: TestValue,
+        _ block: () -> String,
+        file: StaticString = #file,
+        line: UInt = #line,
+        function: StaticString = #function
+    ) {
+        guard case .data(let value) = testValue else {
+            XCTAssert(false, "use real value from task", file: file, line: line)
+            return
+        }
+        DataLoader.test(data: dataTest ?? self.dataTest) {
+            XCTAssertEqual("\(block())", value, file: file, line: line)
         }
         let result = block()
         if let checkAllDate {
