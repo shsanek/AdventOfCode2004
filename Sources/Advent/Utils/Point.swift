@@ -3,8 +3,16 @@ import Foundation
 struct Point: Hashable {
     var x, y: Int
 
+    var len_2: Int {
+        x * x + y * y
+    }
+
     static func +(a: Point, b: Point) -> Point {
         .init(x: a.x + b.x, y: a.y + b.y)
+    }
+
+    static func -(a: Point, b: Point) -> Point {
+        .init(x: a.x - b.x, y: a.y - b.y)
     }
 
     static func *(a: Point, k: Int) -> Point {
